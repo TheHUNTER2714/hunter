@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Records</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f06, #4a90e2);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: black;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .search-container {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Student Records</h1>
+
+<div class="search-container">
+    <input type="text" id="searchInput" placeholder="Search by name..." onkeyup="searchStudents()" aria-label="Search students by name">
+</div>
+
+<table id="studentTable">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Mobile No</th>
+            <th>CGPA</th>
+            <th>Grade</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Student data will be inserted here -->
+    </tbody>
+</table>
+
+<script>
+    // Retrieve student data from localStorage
+    const students = JSON.parse(localStorage.getItem('students')) || [];
+
+    // Get the table body element
+    const tableBody = document.getElementById('studentTable').getElementsByTagName('tbody')[0];
+
+    // Populate the table with student data
+    function populateTable(data) {
+        tableBody.innerHTML = ''; // Clear existing rows
+        data.forEach(student => {
+            const newRow = tableBody.insertRow();
+
+            const cell1 = newRow.insertCell(0);
+            const cell2 = newRow.insertCell(1);
+            const cell3 = newRow.insertCell(2);
+            const cell4 = newRow.insertCell(3);
+            const cell5 = newRow.insertCell(4);
+
+            cell1.textContent = student.name;
+            cell2.textContent = student.age;
+            cell3.textContent = student.mobile;
+            cell4.textContent = student.cgpa;
+            cell5.textContent = student.grade;
+        });
+    }
+
+    // Initial population of the table
+    populateTable(students);
+
+    // Search function
+    function searchStudents() {
+        const searchInput = document.getElementById('searchInput').value.toLowerCase();
+        const filteredStudents = students.filter(student => student.name.toLowerCase().includes(searchInput));
+        populateTable(filteredStudents);
+    }
+</script>
+
+</body>
+</html>

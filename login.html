@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Database Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Stack elements vertically */
+            background: linear-gradient(135deg, #f06, #4a90e2);
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            transition: border-color 0.3s; /* Smooth border color transition */
+        }
+
+        input:focus {
+            border-color: #4a90e2; /* Change border color on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s; /* Smooth transition */
+        }
+
+        button:hover {
+            background-color: #357ab8; /* Darker shade on hover */
+            transform: scale(1.05); /* Slightly enlarge on hover */
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .link {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .link a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+
+        .gif-container {
+            margin-bottom: 20px; /* Space between GIF and form */
+        }
+
+        img {
+            max-width: 100%; /* Responsive GIF */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+
+<div class="gif-container">
+    <img src="https://media1.tenor.com/m/4Ei6bAIjMZ0AAAAC/crypto.gif" alt="Login Animation">
+</div>
+
+<form id="loginForm">
+    <h2>Login</h2>
+    <label for="username">Username:</label>
+    <input type="text" id="username" required>
+    
+    <label for="password">Password:</label>
+    <input type="password" id="password" required>
+    
+    <button type="submit">Login</button>
+    <div class="error" id="errorMessage"></div>
+</form>
+
+<div class="link">
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+</div>
+
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+
+        // Get input values
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        // Simple validation (you can expand this)
+        if (username === '' || password === '') {
+            document.getElementById('errorMessage').innerText = 'Please fill in all fields.';
+        } else {
+            // Handle login logic here
+            document.getElementById('errorMessage').innerText = '';
+            alert('Login successful!'); // Placeholder for actual login logic
+        }
+    });
+</script>
+
+</body>
+</html>
